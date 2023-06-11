@@ -1,8 +1,8 @@
 //c++ program to illustrate Bank management system
 #include<iostream>
 #include<fstream> // provides functionality for working with file input and output operations.
-#include<cctype>
-#include<iomanip>
+#include<cctype> // used to include the header file ctype.h, which provides functions for testing and manipulating characters
+#include<iomanip> // allows us to control the formatting of input and output operations
 using namespace std;
 class Bank_Account
 {
@@ -26,6 +26,7 @@ public:
  
  
 void Bank_Account::Updation()
+	
 {
 	cout<<"\n\tBank_Account No. : "<<acno;
 	cout<<"\n\tUpdation Bank_Account Holder Name : ";
@@ -37,6 +38,7 @@ void Bank_Account::Updation()
 	cout<<"\n\tUpdation Balance Total-Money : ";
 	cin>>Money_Deposit;
 }
+
 void Bank_Account::create_Bank_Account()
 {
 	system("CLS");
@@ -61,6 +63,7 @@ void Bank_Account::Display_Account() const
 	cout<<"\n\tType of Bank_Account : "<<type;
 	cout<<"\n\tBalance Total-Money : "<<Money_Deposit;
 }
+
 int Bank_Account::retacno() const
 {
 	return acno;
@@ -72,18 +75,23 @@ char Bank_Account::rettype() const
 {
 	return type;
 }
+
 void Bank_Account::report() const
 {
 	cout<<acno<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<Money_Deposit<<endl;
 }
+
 void Bank_Account::dep(int x)
+	
 {
 	Money_Deposit+=x;
 }
+
 void Bank_Account::draw(int x)
 {
 	Money_Deposit-=x;
 }
+
 int Bank_Account::retMoney_Deposit() const
 {
 	return Money_Deposit;
@@ -97,6 +105,7 @@ void display_all();
 void delete_Bank_Account(int);
 void Money_Deposit_withdraw(int, int);
 void Updation_Bank_Account(int);
+
 int main()
 {
 	char ch;
@@ -126,43 +135,53 @@ int main()
 		case '1':
 			write_Bank_Account();
 			break;
+				
 		case '2':
 			system("CLS");
 			cout<<"\n\n\tPlease Enter The Bank_Account No. : "; cin>>num;
 			Money_Deposit_withdraw(num, 1);
 			break;
+				
 		case '3':
 			system("CLS");
 			cout<<"\n\n\tPlease Enter The Bank_Account No. : "; cin>>num;
 			Money_Deposit_withdraw(num, 2);
 			break;
+				
 		case '4':
 			system("CLS");
 			cout<<"\n\n\tPlease Enter The Bank_Account No. : "; cin>>num;
 			display_sp(num);
 			break;
+				
 		case '5':
 			display_all();
 			break;
+				
 		case '6':
 			system("CLS");
 			cout<<"\n\n\tPlease Enter The Bank_Account No. : "; cin>>num;
 			delete_Bank_Account(num);
 			break;
+				
 		 case '7':
 		 	system("CLS");
 			cout<<"\n\n\tPlease Enter The Bank_Account No. : "; cin>>num;
 			Updation_Bank_Account(num);
 			break;
+				
 		 case '8':
 		 	system("CLS");
 			cout<<"\n\n\tBrought To You By code-projects.org";
 			break;
+				
 		 default :cout<<"\a";
 		}
+		
 		cin.ignore();
 		cin.get();
-    }while(ch!='8');
+    }
+	while(ch!='8');
 	return 0;
 }
  
@@ -179,17 +198,20 @@ void write_Bank_Account()
 	outFile.write(reinterpret_cast<char *> (&ac), sizeof(Bank_Account));
 	outFile.close();
 }
+
 void delete_Bank_Account(int n)
 {
 	Bank_Account ac;
 	ifstream inFile;
 	ofstream outFile;
 	inFile.open("Bank_Account.dat",ios::binary);
+	
 	if(!inFile)
 	{
 		cout<<"File could not be open !! Press any Key...";
 		return;
 	}
+	
 	outFile.open("Temp.dat",ios::binary);
 	inFile.seekg(0,ios::beg);
 	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(Bank_Account)))
@@ -199,7 +221,8 @@ void delete_Bank_Account(int n)
 			outFile.write(reinterpret_cast<char *> (&ac), sizeof(Bank_Account));
 		}
 	}
-    inFile.close();
+    
+	inFile.close();
 	outFile.close();
 	remove("Bank_Account.dat");
 	rename("Temp.dat","Bank_Account.dat");
@@ -253,6 +276,7 @@ void display_all()
 	}
 	inFile.close();
 }
+
 void Updation_Bank_Account(int n)
 {
 	bool found=false;
