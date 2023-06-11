@@ -1,6 +1,6 @@
-
+//c++ program to illustrate Bank management system
 #include<iostream>
-#include<fstream>
+#include<fstream> // provides functionality for working with file input and output operations.
 #include<cctype>
 #include<iomanip>
 using namespace std;
